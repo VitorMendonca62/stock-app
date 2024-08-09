@@ -10,9 +10,7 @@
           <th>Descrição</th>
           <th>Categoria</th>
           <th class="container-button-add">
-            <button class="button-add" (click)="togleForms()">
-              <fa-icon size="lg" [icon]="faPlus"></fa-icon> Adicionar
-            </button>
+            <button class="button-add" (click)="togleForms()">Adicionar</button>
           </th>
         </tr>
       </thead>
@@ -37,8 +35,16 @@
     </table>
 
     <div class="pages">
-      <fa-icon size="lg" [icon]="faAnglesLeft" (click)="changePageInAngles(2, 'left')"></fa-icon>
-      <fa-icon size="lg" [icon]="faAngleLeft" (click)="changePageInAngles(1, 'left')"></fa-icon>
+      <fa-icon
+        size="lg"
+        [icon]="faAnglesLeft"
+        (click)="changePageInAngles(2, 'left')"
+      ></fa-icon>
+      <fa-icon
+        size="lg"
+        [icon]="faAngleLeft"
+        (click)="changePageInAngles(1, 'left')"
+      ></fa-icon>
       <span
         class="page"
         *ngFor="let numberPage of pages"
@@ -47,8 +53,16 @@
         >{{ numberPage }}</span
       >
 
-      <fa-icon size="lg" [icon]="faAngleRight" (click)="changePageInAngles(1, 'rigth')"></fa-icon>
-      <fa-icon size="lg" [icon]="faAnglesRight" (click)="changePageInAngles(2, 'rigth')"></fa-icon>
+      <fa-icon
+        size="lg"
+        [icon]="faAngleRight"
+        (click)="changePageInAngles(1, 'rigth')"
+      ></fa-icon>
+      <fa-icon
+        size="lg"
+        [icon]="faAnglesRight"
+        (click)="changePageInAngles(2, 'rigth')"
+      ></fa-icon>
     </div>
   </div>
 </div>

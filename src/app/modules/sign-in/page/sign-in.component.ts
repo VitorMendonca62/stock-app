@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-sign-in',
@@ -9,7 +10,10 @@ import { UserService } from '../../../services/user.service';
   styleUrl: './sign-in.component.css',
 })
 export class SignInComponent implements OnInit {
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private cookieService: CookieService
+  ) {}
 
   formGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -22,10 +26,13 @@ export class SignInComponent implements OnInit {
   message: string = 'Nada';
   messageVisible: boolean = false;
   isSucess: boolean = false;
-  
+
   ngOnInit(): void {
-    if (localStorage.getItem("token")) {
-      location.href = "/dashboard"
+    if (
+      this.cookieService.get('AUTH_USER') &&
+      this.cookieService.check('AUTH_USER')
+    ) {
+      location.href = '/dashboard';
     }
   }
 
@@ -37,8 +44,10 @@ export class SignInComponent implements OnInit {
           this.messageVisible = true;
           this.isSucess = true;
 
-          localStorage.setItem('token', response.token);
-          // location.href = "/dashboard"
+          this.cookieService.set('AUTH_USER', response.token, { expires: 30 });
+          setTimeout(() => {
+            location.href = '/dashboard';
+          }, 1500);
         },
         error: (error) => {
           this.message = error.error.error;
@@ -46,7 +55,7 @@ export class SignInComponent implements OnInit {
           this.isSucess = false;
 
           setTimeout(() => {
-            this.messageVisible = false
+            this.messageVisible = false;
           }, 2500);
         },
       });

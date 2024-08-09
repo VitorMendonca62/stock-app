@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,7 +9,10 @@ import { UserService } from '../../../services/user.service';
   styleUrl: '../../sign-in/page/sign-in.component.css',
 })
 export class SignUpComponent implements OnInit {
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private cookieService: CookieService
+  ) {}
 
   formGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -24,7 +28,12 @@ export class SignUpComponent implements OnInit {
   isSucess: boolean = false;
 
   ngOnInit(): void {
-    if (localStorage.getItem('user')) location.href = '/dashboard';
+    if (
+      this.cookieService.get('AUTH_USER') &&
+      this.cookieService.check('AUTH_USER')
+    ) {
+      location.href = '/dashboard';
+    }
   }
   // Colocar timeout
   onSubmit() {
@@ -37,15 +46,15 @@ export class SignUpComponent implements OnInit {
             this.messageVisible = true;
             this.isSucess = true;
 
-            setTimeout(() => location.href = "/login", 1500)
+            setTimeout(() => (location.href = '/login'), 1500);
           },
           error: (error) => {
             this.message = error.error.error;
             this.messageVisible = true;
             this.isSucess = true;
-          
+
             setTimeout(() => {
-              this.messageVisible = false
+              this.messageVisible = false;
             }, 2500);
           },
         });

@@ -6,6 +6,7 @@ import {
   faBarcode,
   faTag,
 } from '@fortawesome/free-solid-svg-icons';
+import { CookieService } from 'ngx-cookie-service';
 
 type Page = 'main' | 'products' | 'categories';
 
@@ -21,7 +22,7 @@ export class HeaderComponent {
   faTag = faTag;
   faSignOut = faSignOut;
 
-  constructor() {}
+  constructor(private cookieService: CookieService) {}
 
   @Output() newPageEvent = new EventEmitter<Page>();
   @Output() enableFormsEvent = new EventEmitter<boolean>();
@@ -32,5 +33,10 @@ export class HeaderComponent {
 
   enableForms() {
     this.enableFormsEvent.emit(true);
+  }
+
+  signOut(){
+    this.cookieService.delete("AUTH_USER")
+    location.href = "/login"
   }
 }

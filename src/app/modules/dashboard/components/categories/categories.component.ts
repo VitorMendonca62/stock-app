@@ -50,6 +50,7 @@ export class CategoriesComponent implements OnInit {
           pages += 1;
           this.pages.push(pages);
         }
+        console.log(document.querySelector(`#page-${1}`))
         document.querySelector(`#page-${1}`)?.classList.add('page-selected');
       },
     });

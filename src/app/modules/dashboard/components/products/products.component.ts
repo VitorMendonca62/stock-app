@@ -53,6 +53,7 @@ export class ProductsComponent implements OnInit, OnChanges {
   }
 
   getProducts() {
+    
     this.productsService.getProducts().subscribe({
       next: (response: IProduct[]) => {
         this.pages = [];

@@ -9,6 +9,7 @@ import { SignUpModule } from './modules/sign-up/sign-up.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     FontAwesomeModule,
   ],
-  providers: [provideRouter(routes)],
+  providers: [provideRouter(routes), CookieService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

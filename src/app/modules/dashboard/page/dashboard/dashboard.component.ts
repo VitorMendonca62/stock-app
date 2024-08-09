@@ -9,7 +9,7 @@ type Page = 'main' | 'products' | 'categories';
   styleUrl: './dashboard.component.css',
 })
 export class DashboardComponent {
-  page: Page = 'products';
+  page: Page = 'main';
 
   visibleForms = false;
   changeProducts = false;
