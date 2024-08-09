@@ -15,6 +15,9 @@ export class CreateCategoryComponent {
   @Output() disableFormsEvent = new EventEmitter<boolean>();
 
   faX = faX;
+  message: string = 'Nada';
+  messageVisible: boolean = false;
+  isSucess: boolean = false;
 
   formGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(4)]),
@@ -27,10 +30,27 @@ export class CreateCategoryComponent {
         .subscribe({
           next: (response) => {
             this.newCategoryEvent.emit({ sucess: true });
+      
+            this.message = 'Categoria cadastrada com sucesso';
+            this.messageVisible = true;
+            this.isSucess = true;
+
+            setTimeout(() => {
+              this.messageVisible = false;
+            }, 2500);
+
+            this.formGroup.reset();
+
           },
           error: (error: any) => {
-            console.log(error);
             this.newCategoryEvent.emit({ sucess: false, error });
+            this.message = error.error.error;
+            this.messageVisible = true;
+            this.isSucess = false;
+
+            setTimeout(() => {
+              this.messageVisible = false;
+            }, 2500);
           },
         });
     }

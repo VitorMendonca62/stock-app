@@ -50,6 +50,7 @@
         *ngFor="let numberPage of pages"
         id="page-{{ numberPage }}"
         (click)="changePageInPages(numberPage)"
+        [ngClass]="numberPage == page + 1 ? 'page-selected' : ''"
         >{{ numberPage }}</span
       >
 
@@ -72,3 +73,8 @@
   (newProductEvent)="newProduct($event)"
   (disableFormsEvent)="togleForms()"
 ></app-create-product>
+<app-message
+  [message]="message"
+  [messageVisible]="messageVisible"
+  [isSucess]="isSucess"
+></app-message>

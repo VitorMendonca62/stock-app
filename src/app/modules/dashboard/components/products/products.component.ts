@@ -39,6 +39,9 @@ export class ProductsComponent implements OnInit, OnChanges {
   visibleForms = false;
   page = 0;
   pages: number[] = [];
+  message: string = 'Nada';
+  messageVisible: boolean = false;
+  isSucess: boolean = false;
 
   products: IProduct[][] = [];
 
@@ -53,17 +56,17 @@ export class ProductsComponent implements OnInit, OnChanges {
   }
 
   getProducts() {
-    
     this.productsService.getProducts().subscribe({
       next: (response: IProduct[]) => {
         this.pages = [];
+        this.products = [];
         let pages = 0;
-        for (let i = 0; i <= response.length; i += 4) {
+        for (let i = 0; i < response.length; i += 4) {
           this.products.push(response.slice(i, i + 4));
           pages += 1;
+
           this.pages.push(pages);
         }
-        document.querySelector(`#page-${1}`)?.classList.add('page-selected');
       },
     });
   }
@@ -72,6 +75,22 @@ export class ProductsComponent implements OnInit, OnChanges {
     this.productsService.deleteProduct(id).subscribe({
       next: (response) => {
         this.getProducts();
+        this.message = 'Produto deletado com sucesso';
+        this.messageVisible = true;
+        this.isSucess = true;
+
+        setTimeout(() => {
+          this.messageVisible = false;
+        }, 2500);
+      },
+      error: (error) => {
+        this.message = error.error.error;
+        this.messageVisible = true;
+        this.isSucess = false;
+
+        setTimeout(() => {
+          this.messageVisible = false;
+        }, 2500);
       },
     });
   }
@@ -86,22 +105,11 @@ export class ProductsComponent implements OnInit, OnChanges {
     this.visibleForms = !this.visibleForms;
   }
 
-  changePageClass(page: number, oldPage: number) {
-    document.querySelector(`#page-${page}`)?.classList.add('page-selected');
-    document
-      .querySelector(`#page-${oldPage}`)
-      ?.classList.remove('page-selected');
-  }
-
   changePageInPages(page: number) {
-    const oldPage = this.page + 1;
     this.page = page - 1;
-
-    this.changePageClass(page, oldPage);
   }
   changePageInAngles(weigth: 2 | 1, type: 'left' | 'rigth') {
     let newPage;
-    const oldPage = this.page;
 
     if (type == 'left') newPage = this.page - weigth;
     else newPage = this.page + weigth;
@@ -111,10 +119,5 @@ export class ProductsComponent implements OnInit, OnChanges {
     if (newPage < 1) newPage = 0;
 
     this.page = newPage;
-    console.log(newPage + 1, oldPage + 1, newPage);
-
-    if (newPage != oldPage) {
-      this.changePageClass(newPage + 1, oldPage + 1);
-    }
   }
 }

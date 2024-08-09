@@ -10,6 +10,7 @@ import { CreateProductComponent } from './components/products/create-product/cre
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateCategoryComponent } from './components/categories/components/create-category/create-category.component';
 import { SaleComponent } from './components/sale/sale.component';
+import { MessageComponent } from '../../shared/message/message.component';
 
 @NgModule({
   declarations: [
@@ -20,9 +21,14 @@ import { SaleComponent } from './components/sale/sale.component';
     CategoriesComponent,
     CreateProductComponent,
     CreateCategoryComponent,
-    SaleComponent
+    SaleComponent,
   ],
-  imports: [CommonModule, FontAwesomeModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    MessageComponent,
+  ],
   bootstrap: [
     HeaderComponent,
     DashboardComponent,
@@ -31,7 +37,7 @@ import { SaleComponent } from './components/sale/sale.component';
     CategoriesComponent,
     CreateProductComponent,
     CreateCategoryComponent,
-    SaleComponent
+    SaleComponent,
   ],
 })
 export class DashboardModule {}

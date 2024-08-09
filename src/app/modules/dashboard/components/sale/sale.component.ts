@@ -16,6 +16,9 @@ export class SaleComponent implements OnInit {
 
   faX = faX;
   visibleForms = true;
+  message: string = 'Nada';
+  messageVisible: boolean = false;
+  isSucess: boolean = false;
   products!: IProduct[];
 
   formGroup = new FormGroup({
@@ -40,10 +43,18 @@ export class SaleComponent implements OnInit {
       this.productsService.createSale(this.formGroup.value as ISale).subscribe({
         next: (response) => {
           this.newSaleEvent.emit({ sucess: true });
+          this.message = 'Venda efetuada com sucesso';
+          this.messageVisible = true;
+          this.isSucess = true;
         },
         error: (error: any) => {
-          console.log(error);
+          this.message = error.error.error;
+          this.messageVisible = true;
+          this.isSucess = false;
           this.newSaleEvent.emit({ sucess: false, error });
+          setTimeout(() => {
+            this.messageVisible = false;
+          }, 2500);
         },
       });
     }
