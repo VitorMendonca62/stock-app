@@ -1,0 +1,112 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.container-son {
+  border: 1px solid #aaa;
+  border-radius: 16px;
+  padding: 1rem;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.container-son h2 {
+  color: #321075;
+  font-size: 1.35rem;
+  margin-bottom: 1rem;
+}
+
+table {
+  width: 100%;
+  font-size: 0.9rem;
+  border-spacing: 0;
+}
+thead {
+  text-align: left;
+  background-color: #f3f3f3;
+}
+
+table th {
+  padding: 0.5rem 1rem;
+}
+table td {
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.rows:hover {
+  background-color: #e7e7e7;
+}
+
+.container-button-add {
+  text-align: center;
+}
+
+.button-add {
+  background-color: #0d6efd;
+  color: #fff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 16px;
+}
+
+.button-add:hover {
+  background-color: #3984f5;
+  cursor: pointer;
+}
+
+.actions > div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.actions button {
+  background-color: transparent;
+  padding: 0.5rem;
+  border-radius: 100%;
+  color: #fff;
+}
+
+.actions button:first-child {
+  background-color: #b4a200;
+  cursor: pointer;
+}
+.actions button:first-child:hover {
+  background-color: #dfc902;
+}
+
+.actions button:last-child {
+  background-color: #dc3545;
+}
+.actions button:last-child:hover {
+  background-color: #ff3d50;
+}
+
+.pages {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+fa-icon {
+  display: flex;
+  justify-content: center;
+}
+
+.pages > fa-icon,
+.pages > span {
+  cursor: pointer;
+  text-align: center;
+  width: 1.75rem;
+  padding: 0.5rem;
+  border-radius: 100%;
+}
+.pages > fa-icon:hover,
+.pages > span:hover {
+  background-color: #5c9cfc49;
+}
+.page-selected {
+  background-color: #5c9cfcb6;
+}

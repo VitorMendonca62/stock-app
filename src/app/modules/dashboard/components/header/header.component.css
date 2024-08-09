@@ -1,0 +1,52 @@
+header {
+  background-color: #321075;
+  color: #fff;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 0.5rem;
+  font-size: 0.85rem;
+}
+
+.button {
+  font-size: 0.85rem;
+  border-radius: 16px;
+  cursor: pointer;
+  padding: 0.8rem;
+}
+
+.left {
+  background-color: rgba(144, 203, 240, 0.5);
+}
+
+.left fa-icon {
+  margin-right: 0.25rem;
+}
+.left:hover {
+  background-color: #7d53cf;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.center > a {
+  border: 1px solid #aaa;
+}
+
+.center > a:hover {
+  background-color: #7d53cf;
+}
+
+.rigth {
+  background-color: #dc3545;
+}
+
+.rigth:hover {
+  background-color: #df6c77;
+  
+}

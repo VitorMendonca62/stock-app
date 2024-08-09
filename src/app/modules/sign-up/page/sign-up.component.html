@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="container-son">
+    <h2 class="title">Cadastro</h2>
+    <p class="paragraph">Crie sua conta de forma gratuita!</p>
+    <form class="forms" *ngIf="formGroup" [formGroup]="formGroup" (submit)="onSubmit()">
+      <input
+        type="text"
+        placeholder="Nome completo"
+        name="name"
+        required
+        formControlName="name"
+      />
+      <input
+        type="email"
+        placeholder="Email"
+        name="email"
+        required
+        formControlName="email"
+      />
+      <input
+        type="password"
+        placeholder="Senha"
+        name="password"
+        required
+        formControlName="password"
+      />
+      <button class="button-submit" [disabled]="formGroup.status == 'INVALID'">
+        Cadastrar
+      </button>
+    </form>
+    <a href="#">Fazer login</a>
+  </div>
+</div>
+<app-message
+  [message]="message"
+  [messageVisible]="messageVisible"
+  [isSucess]="isSucess"
+></app-message>

@@ -1,0 +1,9 @@
+<div
+  class=" container {{ isSucess ? 'sucess' : 'error' }}"
+  *ngIf="messageVisible"
+>
+  <p>{{ message }}</p>
+  <div class="container-icon">
+    <fa-icon size="lg" [icon]="faX" (click)="disableMessage()"></fa-icon>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<app-header-dashboard (newPageEvent)="newPage($event)" (enableFormsEvent)="togleForms()"></app-header-dashboard>
+<app-products *ngIf="page == 'products'" [changeProducts]="changeProducts"></app-products>
+<app-main *ngIf="page == 'main'"></app-main>
+<app-categories *ngIf="page == 'categories'"></app-categories>
+<!-- <app-main></app-main> -->
+<app-sale
+  *ngIf="visibleForms"
+  (newSaleEvent)="createSale($event)"
+  (disableFormsEvent)="togleForms()"
+></app-sale>
+

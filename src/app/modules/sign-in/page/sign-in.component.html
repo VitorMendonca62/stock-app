@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="container-son">
+    <h2 class="title">Login</h2>
+    <p class="paragraph">Faça login com sua conta!</p>
+    <form class="forms" [formGroup]="formGroup" (submit)="onSubmit()">
+      <input type="email" placeholder="Email" name="email" required formControlName="email"/>
+      <input type="password" placeholder="Senha" name="password" required formControlName="password"/>
+      <button class="button-submit" [disabled]="formGroup.status == 'INVALID'">Login</button>
+    </form>
+    <a href="/cadastro">Criar conta</a>
+  </div>
+</div>
+<app-message
+  [message]="message"
+  [messageVisible]="messageVisible"
+  [isSucess]="isSucess"
+></app-message>

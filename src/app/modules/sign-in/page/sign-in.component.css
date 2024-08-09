@@ -1,0 +1,75 @@
+.container {
+  background-image: url('/assets/background.jpg');
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  padding: 0.5rem 0;
+}
+.paragraph {
+  font-size: 0.85rem;
+  padding-bottom: 1rem;
+}
+
+.container-son {
+  background-color: #fff;
+  width: 17.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+  border: 1px solid #aaa;
+  box-shadow: 5px 10px 5px -1px rgba(122,122,122,0.61);
+  padding-bottom: 0.25rem;
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.forms input {
+  border: 1px solid #aaa;
+  padding: 0.4rem 0.5rem ;
+  border-radius: 8px;
+  outline: none;
+  font-size: .75rem;
+  width: 80%;
+}
+.forms input:focus {
+  border-color: #242424;
+}
+
+.button-submit {
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  background-color: #63a2ff;
+  color: #fff;
+  border-radius: 16px;
+}
+.button-submit:hover {
+  background-color: #0d6efd;
+
+}
+.button-submit:disabled {
+  opacity: 0.4;
+}
+
+.container-son a {
+  margin-top: 1.5rem;
+  color: #8f8f8f;
+  font-size: 0.75rem
+}
+.container-son a:hover {
+  color: #000;
+}
+

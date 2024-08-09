@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="container-son">
+    <h2>Categorias de produtos</h2>
+    <table>
+      <thead>
+        <tr class="rows">
+          <th>Nome</th>
+          <th class="container-button-add">
+            <button class="button-add" (click)="togleForms()">
+              <fa-icon size="lg" [icon]="faPlus"></fa-icon> Adicionar
+            </button>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="rows" *ngFor="let category of categories[page]">
+          <td>{{ category.name }}</td>
+          <td class="actions">
+            <div style="background-color: transparent">
+              <button><fa-icon size="lg" [icon]="faPencil"></fa-icon></button>
+              <button (click)="deleteCategory(category.id)">
+                <fa-icon size="lg" [icon]="faTrash"></fa-icon>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pages">
+      <fa-icon
+        size="lg"
+        [icon]="faAnglesLeft"
+        (click)="changePageInAngles(2, 'left')"
+      ></fa-icon>
+      <fa-icon
+        size="lg"
+        [icon]="faAngleLeft"
+        (click)="changePageInAngles(1, 'left')"
+      ></fa-icon>
+      <span
+        class="page"
+        *ngFor="let numberPage of pages"
+        id="page-{{ numberPage }}"
+        (click)="changePageInPages(numberPage)"
+        >{{ numberPage }}</span
+      >
+
+      <fa-icon
+        size="lg"
+        [icon]="faAngleRight"
+        (click)="changePageInAngles(1, 'rigth')"
+      ></fa-icon>
+      <fa-icon
+        size="lg"
+        [icon]="faAnglesRight"
+        (click)="changePageInAngles(2, 'rigth')"
+      ></fa-icon>
+    </div>
+  </div>
+</div>
+<app-create-category
+  *ngIf="visibleForms"
+  (newCategoryEvent)="createCategory($event)"
+  (disableFormsEvent)="togleForms()"
+></app-create-category>

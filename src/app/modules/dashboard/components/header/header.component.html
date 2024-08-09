@@ -1,0 +1,22 @@
+<header>
+  <a class="left button" (click)="changePage('main')">
+    <fa-icon size="lg" [icon]="faHome"></fa-icon> Dashboard
+  </a>
+  <div class="center button">
+    <a class="button" (click)="changePage('products')">
+      <fa-icon size="lg" [icon]="faCartShopping"></fa-icon>
+      Produtos
+    </a>
+    <a class="button" (click)="changePage('categories')">
+      <fa-icon size="lg" [icon]="faTag"></fa-icon>
+      Categorias
+    </a>
+    <a class="button" (click)="enableForms()">
+      <fa-icon size="lg" [icon]="faBarcode"></fa-icon>
+      Efetuar venda
+    </a>
+  </div>
+  <a class="rigth button"  
+    ><fa-icon size="lg" [icon]="faSignOut"></fa-icon> Sair</a
+  >
+</header>
