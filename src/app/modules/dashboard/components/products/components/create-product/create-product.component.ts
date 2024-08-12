@@ -1,8 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { CategoriesService } from '../../../../../services/categories.service';
+import { CategoriesService } from '../../../../../../services/categories.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ProductsService } from '../../../../../services/products.service';
+import { ProductsService } from '../../../../../../services/products.service';
 import { faX } from '@fortawesome/free-solid-svg-icons';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-create-product',
@@ -33,7 +34,7 @@ export class CreateProductComponent implements OnInit {
       Validators.required,
       Validators.minLength(6),
     ]),
-    amount: new FormControl(0, [Validators.required, Validators.min(0)]),
+    amount: new FormControl(1, [Validators.required, Validators.min(1)]),
   });
 
   ngOnInit(): void {

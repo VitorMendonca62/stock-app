@@ -15,6 +15,7 @@ import {
   faAngleLeft,
 } from '@fortawesome/free-solid-svg-icons';
 import { ProductsService } from '../../../../services/products.service';
+import { map } from 'rxjs';
 
 export interface IEvent {
   sucess: boolean;
@@ -36,7 +37,8 @@ export class ProductsComponent implements OnInit, OnChanges {
   faPlus = faPlus;
   faPencil = faPencil;
   faTrash = faTrash;
-  visibleForms = false;
+  visibleCreateProductForms = false;
+  visibleEditProductForms = false;
   page = 0;
   pages: number[] = [];
   message: string = 'Nada';
@@ -44,6 +46,7 @@ export class ProductsComponent implements OnInit, OnChanges {
   isSucess: boolean = false;
 
   products: IProduct[][] = [];
+  productEdit!: IProduct;
 
   constructor(private productsService: ProductsService) {}
 
@@ -56,19 +59,22 @@ export class ProductsComponent implements OnInit, OnChanges {
   }
 
   getProducts() {
-    this.productsService.getProducts().subscribe({
-      next: (response: IProduct[]) => {
-        this.pages = [];
-        this.products = [];
-        let pages = 0;
-        for (let i = 0; i < response.length; i += 4) {
-          this.products.push(response.slice(i, i + 4));
-          pages += 1;
+    this.productsService
+      .getProducts()
+      .pipe(map((products) => products.filter((product) => product.amount > 0)))
+      .subscribe({
+        next: (response: IProduct[]) => {
+          this.pages = [];
+          this.products = [];
+          let pages = 0;
+          for (let i = 0; i < response.length; i += 4) {
+            this.products.push(response.slice(i, i + 4));
+            pages += 1;
 
-          this.pages.push(pages);
-        }
-      },
-    });
+            this.pages.push(pages);
+          }
+        },
+      });
   }
 
   deleteProduct(id: string) {
@@ -101,13 +107,14 @@ export class ProductsComponent implements OnInit, OnChanges {
     }
   }
 
-  togleForms() {
-    this.visibleForms = !this.visibleForms;
+  togleForms(forms: 'visibleCreateProductForms' | 'visibleEditProductForms') {
+    this[forms] = !this[forms];
   }
 
   changePageInPages(page: number) {
     this.page = page - 1;
   }
+
   changePageInAngles(weigth: 2 | 1, type: 'left' | 'rigth') {
     let newPage;
 
@@ -119,5 +126,9 @@ export class ProductsComponent implements OnInit, OnChanges {
     if (newPage < 1) newPage = 0;
 
     this.page = newPage;
+  }
+
+  showEditForms(product: IProduct) {
+    this.productEdit = product;
   }
 }

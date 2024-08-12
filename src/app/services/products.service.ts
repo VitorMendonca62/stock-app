@@ -36,6 +36,14 @@ export class ProductsService {
     );
   }
 
+  editProduct(values: IProductCreate) {
+    return this.http.put<IProduct>(
+      'http://localhost:3333/product',
+      values,
+      this.getHeaders()
+    );
+  }
+
   createSale(values: ISale) {
     return this.http.put<IProduct>(
       `http://localhost:3333/product/sale?product_id=${values.product_id}`,
@@ -43,4 +51,5 @@ export class ProductsService {
       this.getHeaders()
     );
   }
+
 }

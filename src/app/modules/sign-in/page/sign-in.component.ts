@@ -9,7 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.css',
 })
-export class SignInComponent implements OnInit {
+export class SignInComponent  {
   constructor(
     private userService: UserService,
     private cookieService: CookieService
@@ -27,14 +27,6 @@ export class SignInComponent implements OnInit {
   messageVisible: boolean = false;
   isSucess: boolean = false;
 
-  ngOnInit(): void {
-    if (
-      this.cookieService.get('AUTH_USER') &&
-      this.cookieService.check('AUTH_USER')
-    ) {
-      location.href = '/dashboard';
-    }
-  }
 
   onSubmit() {
     if (this.formGroup.valid) {

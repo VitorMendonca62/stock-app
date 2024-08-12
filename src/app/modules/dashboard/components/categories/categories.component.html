@@ -6,7 +6,12 @@
         <tr class="rows">
           <th>Nome</th>
           <th class="container-button-add">
-            <button class="button-add" (click)="togleForms()">Adicionar</button>
+            <button
+              class="button-add"
+              (click)="togleForms('visibleCreateForms')"
+            >
+              Adicionar
+            </button>
           </th>
         </tr>
       </thead>
@@ -15,7 +20,14 @@
           <td>{{ category.name }}</td>
           <td class="actions">
             <div style="background-color: transparent">
-              <button><fa-icon size="lg" [icon]="faPencil"></fa-icon></button>
+              <button
+                (click)="
+                  togleForms('visibleEditForms');
+                  editCategory({ name: category.name, categoryId: category.id })
+                "
+              >
+                <fa-icon size="lg" [icon]="faPencil"></fa-icon>
+              </button>
               <button (click)="deleteCategory(category.id)">
                 <fa-icon size="lg" [icon]="faTrash"></fa-icon>
               </button>
@@ -58,10 +70,16 @@
   </div>
 </div>
 <app-create-category
-  *ngIf="visibleForms"
+  *ngIf="visibleCreateForms"
   (newCategoryEvent)="createCategory($event)"
-  (disableFormsEvent)="togleForms()"
+  (disableFormsEvent)="togleForms('visibleCreateForms')"
 ></app-create-category>
+<app-edit-category
+  *ngIf="visibleEditForms"
+  (disableFormsEvent)="togleForms('visibleEditForms')"
+  [category]="category"
+  (editCategoryEvent)="createCategory($event)"
+></app-edit-category>
 <app-message
   [message]="message"
   [messageVisible]="messageVisible"

@@ -2,11 +2,10 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductsService } from '../../../../services/products.service';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
 @Component({
   selector: 'app-sale',
   templateUrl: './sale.component.html',
-  styleUrl: '../products/create-product/create-product.component.css',
+  styleUrl: '../products/components/create-product/create-product.component.css',
 })
 export class SaleComponent implements OnInit {
   @Output() newSaleEvent = new EventEmitter<any>();

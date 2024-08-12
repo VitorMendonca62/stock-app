@@ -5,12 +5,17 @@
       <thead>
         <tr class="rows">
           <th>Nome</th>
-          <th>Quantidade</th>
+          <th class="amount-cell">Quantidade</th>
           <th>Preço</th>
           <th>Descrição</th>
           <th>Categoria</th>
           <th class="container-button-add">
-            <button class="button-add" (click)="togleForms()">Adicionar</button>
+            <button
+              class="button-add"
+              (click)="togleForms('visibleCreateProductForms')"
+            >
+              Adicionar
+            </button>
           </th>
         </tr>
       </thead>
@@ -18,12 +23,19 @@
         <tr class="rows" *ngFor="let product of products[page]">
           <td>{{ product.name }}</td>
           <td>{{ product.amount }}</td>
-          <td>R$ {{ product.price }}</td>
+          <td>R$ {{ product.price }},00</td>
           <td>{{ product.description }}</td>
           <td>{{ product.category.name }}</td>
           <td class="actions">
             <div style="background-color: transparent">
-              <button><fa-icon size="lg" [icon]="faPencil"></fa-icon></button>
+              <button
+                (click)="
+                  togleForms('visibleEditProductForms');
+                  showEditForms(product)
+                "
+              >
+                <fa-icon size="lg" [icon]="faPencil"></fa-icon>
+              </button>
 
               <button (click)="deleteProduct(product.id)">
                 <fa-icon size="lg" [icon]="faTrash"></fa-icon>
@@ -69,10 +81,16 @@
 </div>
 
 <app-create-product
-  *ngIf="visibleForms"
+  *ngIf="visibleCreateProductForms"
   (newProductEvent)="newProduct($event)"
-  (disableFormsEvent)="togleForms()"
+  (disableFormsEvent)="togleForms('visibleCreateProductForms')"
 ></app-create-product>
+<app-edit-product
+  *ngIf="visibleEditProductForms"
+  (disableFormsEvent)="togleForms('visibleEditProductForms')"
+  (editProductEvent)="newProduct($event)"
+  [product]="productEdit"
+></app-edit-product>
 <app-message
   [message]="message"
   [messageVisible]="messageVisible"

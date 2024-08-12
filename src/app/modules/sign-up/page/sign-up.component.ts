@@ -8,7 +8,7 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './sign-up.component.html',
   styleUrl: '../../sign-in/page/sign-in.component.css',
 })
-export class SignUpComponent implements OnInit {
+export class SignUpComponent {
   constructor(
     private userService: UserService,
     private cookieService: CookieService
@@ -27,14 +27,7 @@ export class SignUpComponent implements OnInit {
   messageVisible: boolean = false;
   isSucess: boolean = false;
 
-  ngOnInit(): void {
-    if (
-      this.cookieService.get('AUTH_USER') &&
-      this.cookieService.check('AUTH_USER')
-    ) {
-      location.href = '/dashboard';
-    }
-  }
+
   // Colocar timeout
   onSubmit() {
     if (this.formGroup.valid) {

@@ -18,7 +18,10 @@ interface IEvent {
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
-  styleUrl: '../products/products.component.css',
+  styleUrls: [
+    '../products/products.component.css',
+    './categories.component.css',
+  ],
 })
 export class CategoriesComponent implements OnInit {
   faPlus = faPlus;
@@ -28,16 +31,20 @@ export class CategoriesComponent implements OnInit {
   faAnglesRight = faAnglesRight;
   faAngleRight = faAngleRight;
   faAngleLeft = faAngleLeft;
-  visibleForms = false;
+
+  visibleCreateForms = false;
+  visibleEditForms = false;
+
   page = 0;
   pages: number[] = [];
   message: string = 'Nada';
   messageVisible: boolean = false;
   isSucess: boolean = false;
 
-  constructor(private categoriesService: CategoriesService) {}
-
   categories: ICategory[][] = [];
+  category!: ICategoryEdit;
+
+  constructor(private categoriesService: CategoriesService) {}
 
   ngOnInit(): void {
     this.getCategories();
@@ -88,13 +95,18 @@ export class CategoriesComponent implements OnInit {
     }
   }
 
-  togleForms() {
-    this.visibleForms = !this.visibleForms;
+  editCategory(category: ICategoryEdit) {
+    this.category = category;
+  }
+
+  togleForms(forms: 'visibleCreateForms' | 'visibleEditForms') {
+    this[forms] = !this[forms];
   }
 
   changePageInPages(page: number) {
     this.page = page - 1;
   }
+  
   changePageInAngles(weigth: 2 | 1, type: 'left' | 'rigth') {
     let newPage;
 

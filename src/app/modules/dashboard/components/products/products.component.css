@@ -42,6 +42,7 @@ table td {
 
 .container-button-add {
   text-align: center;
+  width: 5%;
 }
 
 .button-add {
@@ -54,6 +55,10 @@ table td {
 .button-add:hover {
   background-color: #3984f5;
   cursor: pointer;
+}
+
+.amount-cell {
+  width: 5%;
 }
 
 .actions > div {
@@ -89,6 +94,7 @@ table td {
   display: flex;
   justify-content: center;
   gap: 1rem;
+  margin-top: 1rem;
 }
 fa-icon {
   display: flex;

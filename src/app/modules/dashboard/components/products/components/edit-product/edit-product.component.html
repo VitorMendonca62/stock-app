@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="shadow" (click)="disableForms()"></div>
+  <div class="container-forms">
+    <div class="header">
+      <h3>Editar Produto</h3>
+      <div class="icons">
+        <button (click)="disableForms()" style="background-color: transparent; cursor: pointer;">
+          <fa-icon size="lg" [icon]="faX"></fa-icon>
+        </button>
+      </div>
+    </div>
+
+    <form [formGroup]="formGroup" (submit)="onSubmit()">
+      <input
+        required
+        type="text"
+        name="name"
+        placeholder="Nome"
+        formControlName="name"
+      />
+      <select name="category_id" formControlName="category_id">
+        <option value="i">Selecione uma categoria</option>
+        <option *ngFor="let category of categories" value="{{ category.id }}">
+          {{ category.name }}
+        </option>
+      </select>
+      <input
+        required
+        type="string"
+        name="price"
+        placeholder="Preço"
+        formControlName="price"
+      />
+      <input
+        required
+        type="text"
+        name="description"
+        placeholder="Descrição"
+        formControlName="description"
+      />
+      <input
+        required
+        type="number"
+        name="amount"
+        value="0"
+        formControlName="amount"
+      />
+
+      <input type="hidden" formControlName="product_id">
+
+      <button class="button-submit" [disabled]="formGroup.status == 'INVALID'">
+        Concluir
+      </button>
+    </form>
+  </div>
+</div>
+<app-message
+  [message]="message"
+  [messageVisible]="messageVisible"
+  [isSucess]="isSucess"
+></app-message>

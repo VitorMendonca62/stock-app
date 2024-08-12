@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IEvent } from '../../components/products/products.component';
+import { CookieService } from 'ngx-cookie-service';
+import { Route, Router } from '@angular/router';
 
 type Page = 'main' | 'products' | 'categories';
 @Component({
@@ -8,18 +10,25 @@ type Page = 'main' | 'products' | 'categories';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
 })
-export class DashboardComponent {
-  page: Page = 'main';
+export class DashboardComponent implements OnInit {
+  constructor(private cookieService: CookieService, private router: Router) {}
+
+  page: Page = 'products';
 
   visibleForms = false;
   changeProducts = false;
+
+  ngOnInit(): void {
+    // if (!this.cookieService.get('AUTH_USER')) {
+    //   this.router.navigate(['login']);
+    // }
+  }
 
   newPage(event: Page) {
     this.page = event;
   }
 
   createSale(event: IEvent) {
-    console.log(event);
     this.changeProducts = true;
 
     setTimeout(() => {

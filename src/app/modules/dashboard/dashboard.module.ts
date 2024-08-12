@@ -6,11 +6,13 @@ import { DashboardComponent } from './page/dashboard/dashboard.component';
 import { ProductsComponent } from './components/products/products.component';
 import { MainComponent } from './components/main/main.component';
 import { CategoriesComponent } from './components/categories/categories.component';
-import { CreateProductComponent } from './components/products/create-product/create-product.component';
+import { CreateProductComponent } from './components/products/components/create-product/create-product.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CreateCategoryComponent } from './components/categories/components/create-category/create-category.component';
 import { SaleComponent } from './components/sale/sale.component';
 import { MessageComponent } from '../../shared/message/message.component';
+import { EditProductComponent } from './components/products/components/edit-product/edit-product.component';
+import { EditCategoryComponent } from './components/categories/components/edit-category/edit-category.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { MessageComponent } from '../../shared/message/message.component';
     CreateProductComponent,
     CreateCategoryComponent,
     SaleComponent,
+    EditProductComponent,
+    EditCategoryComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +42,8 @@ import { MessageComponent } from '../../shared/message/message.component';
     CreateProductComponent,
     CreateCategoryComponent,
     SaleComponent,
+    EditProductComponent,
+    EditCategoryComponent,
   ],
 })
 export class DashboardModule {}

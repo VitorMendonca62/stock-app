@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="shadow" (click)="disableForms()"></div>
+  <div class="container-forms">
+    <div class="header">
+      <h3>Editar Categorias</h3>
+      <div class="icons">
+        <button
+          (click)="disableForms()"
+          style="background-color: transparent; cursor: pointer"
+        >
+          <fa-icon size="lg" [icon]="faX"></fa-icon>
+        </button>
+      </div>
+    </div>
+
+    <form [formGroup]="formGroup" (submit)="onSubmit()">
+      <input
+        required
+        type="text"
+        name="name"
+        placeholder="Nome"
+        formControlName="name"
+      />
+      <input type="hidden" formControlName="categoryId">
+      <button class="button-submit" [disabled]="formGroup.status == 'INVALID'">
+        Concluir
+      </button>
+    </form>
+  </div>
+</div>
+<app-message
+  [message]="message"
+  [messageVisible]="messageVisible"
+  [isSucess]="isSucess"
+></app-message>
