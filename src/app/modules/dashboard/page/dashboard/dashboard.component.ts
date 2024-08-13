@@ -13,7 +13,7 @@ type Page = 'main' | 'products' | 'categories';
 export class DashboardComponent implements OnInit {
   constructor(private cookieService: CookieService, private router: Router) {}
 
-  page: Page = 'products';
+  page: Page = 'main';
 
   visibleForms = false;
   changeProducts = false;
