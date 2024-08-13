@@ -27,7 +27,7 @@ export interface IEvent {
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
-export class ProductsComponent implements OnInit, OnChanges {
+export class ProductsComponent implements OnInit {
   @Input() changeProducts!: boolean;
 
   faAnglesLeft = faAnglesLeft;
@@ -51,10 +51,6 @@ export class ProductsComponent implements OnInit, OnChanges {
   constructor(private productsService: ProductsService) {}
 
   ngOnInit(): void {
-    this.getProducts();
-  }
-
-  ngOnChanges(): void {
     this.getProducts();
   }
 
