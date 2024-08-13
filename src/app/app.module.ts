@@ -10,7 +10,6 @@ import { DashboardModule } from './modules/dashboard/dashboard.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CookieService } from 'ngx-cookie-service';
-import { ChartModule } from 'primeng/chart';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -24,8 +23,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DashboardModule,
     HttpClientModule,
     FontAwesomeModule,
-    ChartModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [provideRouter(routes), CookieService],
   bootstrap: [AppComponent],

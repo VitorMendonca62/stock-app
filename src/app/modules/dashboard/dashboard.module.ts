@@ -13,7 +13,6 @@ import { SaleComponent } from './components/sale/sale.component';
 import { MessageComponent } from '../../shared/message/message.component';
 import { EditProductComponent } from './components/products/components/edit-product/edit-product.component';
 import { EditCategoryComponent } from './components/categories/components/edit-category/edit-category.component';
-import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -33,7 +32,6 @@ import { ChartModule } from 'primeng/chart';
     FontAwesomeModule,
     ReactiveFormsModule,
     MessageComponent,
-    ChartModule
   ],
   bootstrap: [
     HeaderComponent,
