@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {environment} from "../../environments/environment"
+
+const API_URL = environment.apiUrl
 
 @Injectable({
   providedIn: 'root',
@@ -17,20 +20,20 @@ export class ProductsService {
 
   getProducts() {
     return this.http.get<IProduct[]>(
-      'http://localhost:3333/products',
+      `${API_URL}products`,
       this.getHeaders()
     );
   }
   deleteProduct(id: string) {
     return this.http.delete<IProduct>(
-      `http://localhost:3333/product/delete?product_id=${id}`,
+      `${API_URL}product/delete?product_id=${id}`,
       this.getHeaders()
     );
   }
 
   createProduct(values: IProductCreate) {
     return this.http.post<IProduct>(
-      'http://localhost:3333/product',
+      `${API_URL}product`,
       values,
       this.getHeaders()
     );
@@ -38,7 +41,7 @@ export class ProductsService {
 
   editProduct(values: IProductCreate) {
     return this.http.put<IProduct>(
-      'http://localhost:3333/product',
+      `${API_URL}product`,
       values,
       this.getHeaders()
     );
@@ -46,7 +49,7 @@ export class ProductsService {
 
   createSale(values: ISale) {
     return this.http.put<IProduct>(
-      `http://localhost:3333/product/sale?product_id=${values.product_id}`,
+      `${API_URL}product/sale?product_id=${values.product_id}`,
       { amount: values.amount },
       this.getHeaders()
     );

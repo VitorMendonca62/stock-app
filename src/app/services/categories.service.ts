@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import {environment} from "../../environments/environment"
 
-
-
+const API_URL = environment.apiUrl
 @Injectable({
   providedIn: 'root',
 })
@@ -19,21 +19,21 @@ export class CategoriesService {
 
   getCategories() {
     return this.http.get<ICategory[]>(
-      'http://localhost:3333/categories',
+      `${API_URL}categories`,
       this.getHeaders()
     );
   }
 
   deleteCategory(id: string) {
     return this.http.delete<ICategory>(
-      `http://localhost:3333/category/delete?category_id=${id}`,
+      `${API_URL}category/delete?category_id=${id}`,
       this.getHeaders()
     );
   }
 
   createCategory(values: string) {
     return this.http.post<ICategory>(
-      'http://localhost:3333/category',
+      `${API_URL}category`,
       { name: values },
       this.getHeaders()
     );
@@ -41,7 +41,7 @@ export class CategoriesService {
 
   editCategory(values: ICategoryEdit) {
     return this.http.put<ICategory>(
-      `http://localhost:3333/category/edit?category_id=${values.categoryId}`,
+      `${API_URL}category/edit?category_id=${values.categoryId}`,
       { name: values.name },
       this.getHeaders()
     );
